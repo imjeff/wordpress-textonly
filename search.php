@@ -1,37 +1,33 @@
 <?php
-/*
-Template Name: 搜索模板
-*/
-?>
-<?php get_header(); ?>
-<h1 class="title">搜索<?php if ( is_search()) : ?><?php printf( '关键词：%s' , '<span>&ldquo;' . get_search_query() . '&rdquo;</span>' ); ?><?php endif; ?></h1>
-<form action="/" method="get">
-<input type="text" name="s" id="search" value="<?php the_search_query(); ?>" placeholder="请输入你需要搜索的关键词" />
-<input type="submit" id="searchsubmit" value="搜索" />
+/**
+ * 搜索模板
+ *
+ * @package custom
+ */
+if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<?php $this->need('header.php'); ?>
+<h1 class="title">搜索<?php if ( $this->is('search') ) : ?>关键词：<?php echo $this->archiveTitle('','“','”'); ?><?php endif; ?></h1>
+<form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
+<input type="text" id="s" name="s" class="text" value="<?php if ( $this->is('search') ) : ?><?php echo $this->archiveTitle('','',''); ?><?php endif; ?>" placeholder="<?php _e('输入关键字搜索'); ?>"/>
+<button type="submit" class="submit"><?php _e('搜索'); ?></button>
 </form>
 <article>
-<?php if ( is_search() && have_posts() ) : ?>
-<div class="crumb"><?php global $found_posts; printf( '为你找到 %s 条相关结果', $wp_query->found_posts ); ?></div>
+<?php if ( $this->is('search') && $this->have()) : ?>
+<div class="crumb">为你找到以下相关结果</div>
 <ul class="results">
-<?php while ( have_posts() ) : the_post();?>
+<?php while ($this->next()): ?>
 <li>
-<?php if ( 'post' == get_post_type()){ echo "[ "; the_category(', '); echo " ] "; } ?><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( $title_args ); ?>"><?php the_title_attribute( $title_args ); ?> <small><time datetime="<?php the_time('Y年m月d日');?>"><?php the_time('(Y/m/d)');?></time></small></a>
+[ <?php $this->category(','); ?> ] <a href="<?php $this->permalink(); ?>" title="<?php $this->title() ?>"><?php $this->title() ?> <small><time datetime="<?php $this->date(); ?>"><?php $this->date(); ?></time></small></a>
 </li>
 <?php endwhile; ?>
 </ul>
-<?php if ( get_the_posts_pagination() ) : ?>
+<?php if ( $this->is('search') && $this->is('archive')) { ?>
 <div class="post-pagination">
-<?php
-the_posts_pagination( array(
-'mid_size' =>1,
-'prev_text' =>'<span>&larr;</span>',
-'next_text' =>'<span>&rarr;</span>',
-));
-?>
+<?php $this->pageNav('&nbsp;←&nbsp;', '&nbsp;→&nbsp;', '5', '…'); ?>
 </div>
-<?php endif; ?>
-<?php elseif ( is_search() && ! have_posts() ) : ?>
-<?php global $found_posts; printf( '抱歉，没有找到相关的结果，你可以在上方搜索栏中尝试其他关键词。' , get_search_query() ); ?>
+<?php }; ?>
+<?php elseif ( $this->is('search') && !$this->have())  : ?>
+抱歉，没有找到相关的结果，你可以在上方搜索栏中尝试其他关键词。
 <?php endif; ?>
 </article>
-<?php get_footer(); ?>
+<?php $this->need('footer.php'); ?>
