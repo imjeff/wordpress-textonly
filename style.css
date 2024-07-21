@@ -1,3 +1,15 @@
+/*
+Theme Name: Text Only
+Theme URI: https://yayu.net/projects/wordpress-textonly
+Author: Jeff Chen
+Author URI: https://yayu.net/
+Description: Text Only 是一款 Typecho & WordPress 纯文本极简主题，黑白配色，对程序极简优化，主题无 JS 和图片文件载入。主题支持自定义背景、自定义菜单，保留搜索及评论功能；内置文章归档和搜索模板；已作中文字体优化，内置3种字体方案可选。
+Tags: blog, plaintext, one-column, full-width-template, minimalism, responsive, free
+Version: 1.0.0
+License: CC BY-NC-SA 4.0 DEED
+License URI: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans
+*/
+
 :root {
     --width: 580px; /* 网页宽度 */
     --font-yahei: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Helvetica,Arial,"PingFangSC-Regular","Hiragino Sans GB","Lantinghei SC","Microsoft Yahei","Source Han Sans CN","WenQuanYi Micro Hei",SimSun,sans-serif;
@@ -38,7 +50,7 @@ img{max-width:100%;height:auto}
 code{font-family:monospace;padding:2px;background-color:var(--line-color);color:var(--code-color);border-radius:3px}
 blockquote{border-left:1px solid var(--gray-color);color:var(--code-color);padding-left:20px;font-style:italic}
 header,footer{padding:20px 0;color:var(--gray-color);}
-footer a{color:var(--sub-color)}
+footer a{color:var(--nav-color)}
 header{margin-bottom: 100px;padding-bottom:30px;border-bottom:1px solid var(--line-color);}
 main{margin-top: 50px;}
 .crumb{color: var(--gray-color);}
@@ -55,24 +67,29 @@ main .title{font-size:22px;padding-bottom: 5px;}
 .tags a{color:var(--gray-color);margin-right: 10px;}
 form > *:last-child{margin-bottom:0}
 label{font-size:0.9em;}
-input[type="text"],input[type="email"],input[type="url"],input[type="search"],textarea{background:transparent;border-radius:4px;border:1px solid var(--border-color);box-shadow:none;display:block;margin:0 0 15px 0;padding:10px;width:calc( 100% - 20px );max-width:calc(100% - 25px);}
+input[type="text"],input[type="email"],input[type="url"],input[type="search"],textarea{background:transparent;border-radius:4px;border:1px solid var(--border-color);box-shadow:none;display:block;margin:0 0 15px 0;padding:10px;width:100%}
 textarea{line-height:1.5;height:100px}
-textarea:focus,input[type="email"]:focus,input[type="search"]:focus,input[type="text"]:focus,input[type="url"]:focus{border:1px solid var(--gray-color);outline:0}
+textarea:focus,input[type="email"]:focus,input[type="search"]:focus,input[type="text"]:focus,input[type="url"]:focus{border:1px solid #999;outline:0}
 button,.button,input[type="button"],input[type="reset"],input[type="submit"]{background-color:var(--nav-color);border:none;border-radius:4px;color:#fff;display:inline-block;font-family:inherit;font-size:16px;margin:0;padding:8px 16px 10px;text-align:center}
 button:hover,.button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover{cursor:pointer;opacity:.7}
-.comment-list,.comment-list .comment-children{list-style: none;padding:0;margin-bottom:40px;}
-.comment-list{margin:30px 0;list-style: none;}
-.comment-list .comment-children{margin-left:50px}
+.commentlist,.commentlist .children{list-style: none;padding:0;margin-bottom:40px;}
+.comment{margin:30px 0;list-style: none;}
+.comment .comment{margin-left:50px}
 .comment-author cite{font-weight:bold;font-style:normal;}
 .comment-author .says,.comment-author .avatar{display:none}
-.comment-reply{border-bottom: 1px solid var(--gray-color);display: inline;padding-bottom:2px;}
-.respond h3,#comments h3{margin: 40px 0;padding-top: 30px; border-top: 1px dotted var(--border-color);}
-.respond p + p{margin-top:20px}
+.comment-respond,#comments{margin: 50px 0;padding-top: 30px; border-top: 1px dotted var(--border-color);}
+.logged-in .comment-respond .comment-reply-title{margin-bottom:20px}
+.comment-respond p + p{margin-top:20px}
+.comment-respond .comment-form-author,.comment-respond .comment-form-email{float:left;margin:10px 0;width:calc( 50% - 10px );max-width:calc(100% - 25px);}
+.comment-respond .comment-form-email{margin-left:20px}
+.comment-respond label{display:block}
+.comment-respond input,.comment-respond textarea{padding:10px;max-width:calc(100% - 25px);}
+.comment-respond input[type="checkbox"] + label{display:inline;font-size:14px;margin:0 0 0 5px}
+.closed{margin-top:20px}
 #cancel-comment-reply-link{float:right;font-weight: normal;}
-.post-pagination ol{list-style: none;display:inline-flex;padding: 0;}
-.linked-pagination span,.linked-pagination a:hover span,.post-pagination .page-numbers,.post-pagination ol a{width:35px;height:35px;line-height:35px;margin-right:8px;display:inline-block;text-align:center;border-radius:4px;}
-.linked-pagination span,.linked-pagination a:hover span,.post-pagination .pagination a:hover,.post-pagination .pagination .current,.post-pagination ol a:hover,.post-pagination ol .current a{background:#333;color:#fff}
-.linked-pagination a span,.post-pagination .page-numbers,.post-pagination ol a{background:#f8f8f8;color:#555}
+.linked-pagination span,.linked-pagination a:hover span,.post-pagination .page-numbers{width:35px;height:35px;line-height:35px;margin-right:8px;display:inline-block;text-align:center;border-radius:4px;}
+.linked-pagination span,.linked-pagination a:hover span,.post-pagination .pagination a:hover,.post-pagination .pagination .current{background:#333;color:#fff}
+.linked-pagination a span,.post-pagination .page-numbers{background:#f8f8f8;color:#555}
 .linked-pagination,.post-pagination{margin:80px 0 50px}
 .results{list-style:none;padding:0;margin:0;}
 .results li{margin:20px 0 0;}
