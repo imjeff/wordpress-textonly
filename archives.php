@@ -26,7 +26,7 @@ endif;
 $previous_year = $year; $previous_month = $month;
 ?>
 <li>
-<time datetime="<?php the_time('Y年m月d日');?>"><?php the_time('m-d');?></time>&nbsp·&nbsp<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( $title_args ); ?>"><?php the_title_attribute( $title_args ); ?></a>
+<time datetime="<?php the_time('Y年m月d日');?>"><?php the_time('m-d');?></time>&nbsp·&nbsp<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
 </li>
 <?php endforeach; ?>
 <?php get_footer(); ?>

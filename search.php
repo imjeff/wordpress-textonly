@@ -15,7 +15,7 @@ Template Name: 搜索模板
 <ul class="results">
 <?php while ( have_posts() ) : the_post();?>
 <li>
-<?php if ( 'post' == get_post_type()){ echo "[ "; the_category(', '); echo " ] "; } ?><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( $title_args ); ?>"><?php the_title_attribute( $title_args ); ?> <small><time datetime="<?php the_time('Y年m月d日');?>"><?php the_time('(Y/m/d)');?></time></small></a>
+<?php if ( 'post' == get_post_type()){ echo "[ "; the_category(', '); echo " ] "; } ?><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?> <small><time datetime="<?php the_time('Y年m月d日');?>"><?php the_time('(Y/m/d)');?></time></small></a>
 </li>
 <?php endwhile; ?>
 </ul>
